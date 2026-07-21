@@ -226,7 +226,7 @@ Churn was quantified in revenue terms to build the business case for a retention
 
 **Top-level numbers:**
 - Average monthly charge (churned customers): ~$64.80
-- Annual revenue at risk: **~$1.40M**
+- Annual revenue at risk: **~$0.79M**
 - Recoverable through retention: significant portion depending on programme design
 
 **Revenue at risk by churn category:**
