@@ -419,15 +419,15 @@ The Champion model is deployed as an interactive Streamlit dashboard (`app.py`),
 - Filterable, exportable CRM roster (CSV download) with tailored retention recommendations per customer
 
 **Model Serving Notes:**
-- The model is saved and loaded using XGBoost's **native format** (`xgboost_churn_model.json`) via `model.save_model()` / `model.load_model()`, rather than `joblib`/pickle — this avoids version-mismatch errors (e.g. `'XGBClassifier' object has no attribute 'use_label_encoder'`) that occur when a pickled model is loaded into a different XGBoost version than the one used for training.
+- The model is saved and loaded using `joblib` (`xgboost_churn_model.pkl`) via `joblib.dump()` / `joblib.load()`.
+- Note: this approach requires the XGBoost version installed in the deployment environment to match the version used during training — a mismatch can cause errors such as `'XGBClassifier' object has no attribute 'use_label_encoder'` when unpickling. The exact XGBoost version is pinned in `requirements.txt` to prevent this.
 - Feature engineering in the app is applied dynamically to uploaded data and aligned to the model's expected input columns via `reindex()`, with missing columns filled as 0.
 
 **Local Installation:**
 ```bash
-# 1. Ensure app.py, xgboost_churn_model.json, and requirements.txt are in the same directory
+# 1. Ensure app.py, xgboost_churn_model.pkl, and requirements.txt are in the same directory
 pip install -r requirements.txt
 streamlit run app.py
-```
 
 **Cloud Deployment (Streamlit Community Cloud):**
 1. Push the repository to GitHub
@@ -437,20 +437,20 @@ streamlit run app.py
 
 **Deployment Requirements (`requirements.txt`):**
 ```
-streamlit>=1.32.0
-pandas>=2.0.0
-numpy>=1.24.0,<2.0.0
-matplotlib>=3.7.0
-plotly>=5.18.0
-joblib>=1.3.0
-xgboost>=1.7.0
-shap>=0.44.0
-scikit-learn>=1.3.0
+streamlit
+pandas
+numpy
+matplotlib
+plotly
+joblib
+xgboost
+shap
+scikit-learn
 openpyxl
 ```
 
 **Live App:** `[Insert Streamlit Community Cloud URL here]`
-**Repository:** `[Insert GitHub repository URL here]`
+**Repository:** `[https://github.com/mashaaer17/customer-churn-prediction-]`
 
 ### App Screenshots
 
