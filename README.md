@@ -450,8 +450,8 @@ scikit-learn
 openpyxl
 ```
 
-**Live App:** `[Insert Streamlit Community Cloud URL here]`
-**Repository:** `https://github.com/mashaaer17/customer-churn-prediction-`
+- **Live App:** `[Insert Streamlit Community Cloud URL here]`
+- **Repository:** `https://github.com/mashaaer17/customer-churn-prediction-`
 
 ### App Screenshots
 
