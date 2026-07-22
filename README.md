@@ -47,11 +47,11 @@ Churned customers were broken down by `Churn Category`:
 
 | Churn Category | Churners | % of All Churners |
 |----------------|----------|-------------------|
-| Competitor | 841 | ~46.8% |
-| Dissatisfaction | 321 | ~17.9% |
-| Price | 211 | ~11.7% |
-| Attitude | 214 | ~11.9% |
-| Other | 209 | ~11.6% |
+| Competitor | 805 | ~44.8% |
+| Attitude | 287 | ~16.0% |
+|Dissatisfaction | 286 | ~15.9% |
+| Price | 200 | ~11.1% |
+| Other | 191| ~10.6% |
 
 **Key finding:** Competitor-driven churn accounts for nearly half of all lost customers. The top reasons within that category were: competitor made a better offer, competitor had better devices, competitor offered more data, and competitor offered higher download speeds.
 
@@ -98,9 +98,9 @@ This step examined how contract structure and plan type correlate with churn.
 
 | Contract Type | Churn Rate |
 |---------------|------------|
-| Month-to-Month | ~42.7% |
-| One Year | ~11.0% |
-| Two Year | ~3.0% |
+| Month-to-Month | ~46.3% |
+| One Year | ~11.3% |
+| Two Year | ~2.8% |
 
 Month-to-month customers churn at roughly **10–14× the rate** of two-year contract customers. The low switching cost of a monthly contract is the primary structural driver of churn risk.
 
@@ -118,7 +118,7 @@ Month-to-month customers churn at roughly **10–14× the rate** of two-year con
 
 **Unlimited Data Plan:**
 - Both unlimited and non-unlimited customers churn above the overall average in some segments
-- The plan type alone is not a sufficient retention lever — usage-plan alignment matters more (see Step 4)
+- The plan type alone is not a sufficient retention lever — usage-plan alignment matters more.
 
 ---
 
@@ -130,25 +130,25 @@ This step identified customers paying overage fees for usage not covered by thei
 
 | Segment | Churn Rate |
 |---------|------------|
-| Heavy data user + Unlimited Plan (matched) | ~22.6% |
-| Heavy data user + No Unlimited Plan (overage) | ~44.9% |
-| Light data user + Unlimited Plan (overpaying) | ~27.9% |
-| Light data user + No Plan (no overage) | ~16.5% |
+| Heavy data user + Unlimited Plan (matched) | ~29.9% |
+| Heavy data user + No Unlimited Plan (overage) | ~29.6% |
+| Light data user + Unlimited Plan (overpaying) | ~34.9% |
+| Light data user + No Plan (no overage) | ~13.0% |
 
 **International Plan Mismatch:**
 
 | Segment | Churn Rate |
 |---------|------------|
 | Intl Active + Intl Plan (matched) | ~19.9% |
-| Intl Active + No Intl Plan (overage) | ~42.8% |
-| Not Intl Active + No Plan (no overage) | ~24.3% |
-| Not Intl Active + Intl Plan (overpaying) | ~36.5% |
+| Intl Active + No Intl Plan (overage) | ~34.3% |
+| Not Intl Active + No Plan (no overage) | ~22.2% |
+| Not Intl Active + Intl Plan (overpaying) | ~27.1% |
 
 **Key finding:** Customers paying overage charges without a matching plan churn at approximately **twice the rate** of plan-matched customers.
 
 **Retention actions directly identified:**
-1. Proactively upgrade heavy data users without an Unlimited Plan → reduces churn rate from ~45% to ~23%
-2. Proactively upgrade Intl Active customers without an Intl Plan → reduces churn rate from ~43% to ~20%
+1. Proactively upgrade heavy data users without an Unlimited Plan → reduces churn rate from ~30% to ~15%
+2. Proactively upgrade Intl Active customers without an Intl Plan → reduces churn rate from ~35% to ~17%
 
 These are high-confidence, high-ROI interventions that do not require a predictive model — the mismatch can be identified deterministically from existing billing data.
 
@@ -162,22 +162,20 @@ Customer Service Call volume was analysed as a leading indicator of unresolved f
 
 | CS Calls | Churn Rate |
 |----------|------------|
-| 0 calls | ~15.9% |
-| 1 call | ~19.0% |
-| 2 calls | ~27.2% |
-| 3 calls | ~33.8% |
-| 4 calls | ~40.7% |
-| 5+ calls | ~52.2% |
+| 0 calls | ~8.9% |
+| 1 call | ~31.3% |
+| 2 calls | ~36.6% |
+| 3 calls | ~87.5% |
+| 4+ calls | ~99.8% |
 
-Customers making 5 or more calls churn at over **3× the rate** of customers who never contacted support.
+Customers making 4 or more calls churn at over **3× the rate** of customers who never contacted support.
 
 **Churned vs retained average CS calls:**
-- Retained customers averaged ~1.41 calls
-- Churned customers averaged ~2.28 calls
-- Delta of ~0.87 calls — every unresolved support interaction meaningfully increases churn probability
+- Retained customers averaged ~0.37 calls
+- Churned customers averaged ~2.40 calls
 
 **Heatmap finding — CS Calls × Contract Type:**
-The CS call effect is multiplicative with contract risk. Month-to-month customers making 5+ calls hit **~61% churn rate** — nearly 2 in 3 leave. Two-year contract customers with 5+ calls remain at ~10%, showing the contract acts as a retention buffer even under service friction.
+The CS call effect is multiplicative with contract risk. Month-to-month customers making 4+ calls hit **~100% churn rate** — nearly 2 in 3 leave. Two-year contract customers with 4+ calls remain at ~10%, showing the contract acts as a retention buffer even under service friction.
 
 **Retention actions directly identified:**
 1. Flag any customer reaching a second CS call for a proactive follow-up
@@ -193,14 +191,14 @@ Account length was bucketed and analysed to reveal the non-linear lifecycle chur
 
 | Tenure | Churn Rate | Zone |
 |--------|------------|------|
-| 0–6 months | ~32.4% | 🔴 Early Risk |
-| 7–12 months | ~31.5% | 🔴 Early Risk |
-| 13–24 months | ~25.1% | 🟡 Stabilising |
-| 25–36 months | ~24.3% | 🟢 Stable |
-| 37–48 months | ~21.9% | 🟢 Stable |
-| 49–60 months | ~20.2% | 🟢 Stable |
-| 61–72 months | ~18.7% | 🟡 Late Rise |
-| 73+ months | ~40.3% | 🔴 Loyalty Fatigue |
+| 0–6 months | ~53.1% | 🔴 Early Risk |
+| 7–12 months | ~36.6% | 🔴 Early Risk |
+| 13–24 months | ~29.5% | 🟡 Stabilising |
+| 25–36 months | ~22.1% | 🟢 Stable |
+| 37–48 months | ~18.7% | 🟢 Stable |
+| 49–60 months | ~14.9% | 🟢 Stable |
+| 61–72 months | ~7.0% | 🟡 Late Rise |
+| 73+ months | ~3.7% | 🔴 Loyalty Fatigue |
 
 **The lifecycle curve has three distinct zones:**
 - **Early risk (0–12m):** New customers still deciding if they made the right choice. Highest intervention value per customer.
@@ -208,10 +206,10 @@ Account length was bucketed and analysed to reveal the non-linear lifecycle chur
 - **Loyalty fatigue (61m+):** Long-tenured customers feeling undervalued relative to new-customer offers. Churn rises again — classic "loyalty penalty" effect.
 
 **Group size vs churn rate:**
-Churn falls consistently as group size increases — from ~31.9% for solo customers down to ~16.4% for groups of 6+. Larger groups are stickier because the switching cost is multiplied across the whole group.
+Churn falls consistently as group size increases — from ~32.8% for solo customers down to ~5.6% for groups of 6+. Larger groups are stickier because the switching cost is multiplied across the whole group.
 
 **Lifecycle × Contract Type:**
-Month-to-month customers start at ~46% churn in early tenure and decline to ~29% in late tenure — but never converge with annual or two-year contracts, which remain below 13% throughout all lifecycle stages.
+Month-to-month customers start at ~53.8% churn in early tenure and decline to ~33.6% in late tenure — but never converge with annual or two-year contracts, which remain below 13% throughout all lifecycle stages.
 
 **Retention actions directly identified:**
 1. Structured onboarding programme for months 1–6 — get new customers to the stabilisation zone
@@ -242,10 +240,10 @@ Higher-paying customers churn at higher rates — likely due to either price sen
 
 | Scenario | Customers Saved | Revenue Recovered | Retention Cost | Net ROI |
 |----------|----------------|-------------------|----------------|---------|
-| Retain 10% | ~180 | ~$138K | ~$27K | ~$111K |
-| Retain 20% | ~360 | ~$276K | ~$54K | ~$222K |
-| Retain 30% | ~539 | ~$414K | ~$81K | ~$333K |
-| Retain 50% | ~898 | ~$690K | ~$135K | ~$556K |
+| Retain 10% | ~180 | ~$79K | ~$27K | ~$52K |
+| Retain 20% | ~360 | ~$159K | ~$54K | ~$105K |
+| Retain 30% | ~539 | ~$238K | ~$81K | ~$157K |
+| Retain 50% | ~898 | ~$317K | ~$135K | ~$209K |
 
 > Assumption: $150 retention cost per customer (discount, outreach, or device offer). Even at $300/customer, the ROI remains strongly positive at every scenario level.
 
