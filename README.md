@@ -332,13 +332,13 @@ StandardScaler fit on X_train only → transform X_train & X_test
 
 | # | Finding | Action |
 |---|---------|--------|
-| 1 | Competitor drives 47% of churn | Proactive loyalty offers before contract end |
+| 1 | Competitor drives 44.8% of churn | Proactive loyalty offers before contract end |
 | 2 | Seniors churn above average | Senior-targeted simplified plan programme |
 | 3 | Month-to-month = 3–14× higher churn than fixed contracts | Contract conversion incentives |
 | 4 | Plan-usage mismatch doubles churn rate | Proactive plan upgrade campaigns |
 | 5 | 5+ CS calls = 3× churn rate | First-call resolution target; proactive outreach at 2nd call |
 | 6 | U-shaped lifecycle — early and late tenure are peak risk | Onboarding programme + loyalty fatigue rewards |
-| 7 | Revenue at risk ~$1.4M/year; 5×+ ROI on retention spend | Business case for retention model approved |
+| 7 | Revenue at risk ~$0.79M/year; 5×+ ROI on retention spend | Business case for retention model approved |
 | 8 | Contract type + CS calls + plan mismatch = top 3 model features | Feature engineering plan defined |
 
 ---
