@@ -476,8 +476,9 @@ scikit-learn
 openpyxl
 ```
 
-- **Live App:** `[Insert Streamlit Community Cloud URL here]`
+- **Live App:** `https://customer-churn-prediction-2027.streamlit.app/`
 - **Repository:** `https://github.com/mashaaer17/customer-churn-prediction-`
+  
 
 ### App Screenshots
 
@@ -506,7 +507,7 @@ openpyxl
 │   └── customer_churn_data.csv
 │   └── sample_customer_data.csv
 ├── notebooks/
-│   └── churn_analysis.ipynb
+│   └── Customer_Churn_Prediction.ipynb
 ├── outputs/
 │   ├── churn_category_analysis.png
 │   ├── churn_reason_by_category.png
@@ -550,8 +551,16 @@ numpy
 matplotlib
 scipy
 scikit-learn
-```
 
+```
+## 👥 Collaborators
+
+| Name | Email | LinkedIn |
+|------|-------|----------|
+| [Mashaer Naseldeen] | [mohamed@gmail.com](mailto:mohamed@gmail.com) | [https://www.linkedin.com/in/mashaaer-nasreldeen](https://linkedin.com/in/mashaaer-nasreldeen) |
+| [Moaaz Osman] | [moaazos9137@yahoo.com](mailto:moaazos9137@yahoo.com) | [https://www.linkedin.com/in/moaazos](https://linkedin.com/in/moaazos) |
+
+Feel free to reach out with questions, feedback, or collaboration opportunities.
 Install with:
 ```bash
 pip install pandas numpy matplotlib scipy scikit-learn
