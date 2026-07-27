@@ -1,5 +1,10 @@
 #churn_category_analysis
 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 # ── 1. LOAD DATA ───────────────────────────────────────────
 
 # ── 2. ISOLATE CHURNERS & BUILD CATEGORY SUMMARY ──────────────────────────────
