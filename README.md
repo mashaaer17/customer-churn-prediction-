@@ -552,6 +552,10 @@ matplotlib
 scipy
 scikit-learn
 
+Install with:
+```bash
+pip install pandas numpy matplotlib scipy scikit-learn
+
 ```
 ## 👥 Collaborators
 
@@ -561,9 +565,8 @@ scikit-learn
 | [Moaaz Osman] | [moaazos9137@yahoo.com](mailto:moaazos9137@yahoo.com) | [https://www.linkedin.com/in/moaazos](https://linkedin.com/in/moaazos) |
 
 Feel free to reach out with questions, feedback, or collaboration opportunities.
-Install with:
-```bash
-pip install pandas numpy matplotlib scipy scikit-learn
+
+
 ```
 
 ---
