@@ -1,4 +1,8 @@
 #contract_plan_churn_analysis
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 #--------------------------------
 # Define total_customers, total_churners, and overall_rate
 total_customers = len(df)
