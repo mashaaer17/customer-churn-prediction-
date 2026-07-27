@@ -5,7 +5,7 @@
 
 ---
 
-## 📁 Dataset Overview
+## 📁 Dataset Overview 
 
 | Property | Detail |
 |----------|--------|
@@ -124,33 +124,61 @@ Month-to-month customers churn at roughly **10–14× the rate** of two-year con
 
 ### Step 4 — The Overcharge Analysis (Plan-Usage Mismatch)
 
-This step identified customers paying overage fees for usage not covered by their plan — a directly actionable churn driver.
+This step examined whether customers paying overage fees (usage exceeding
+their plan) churn at different rates than plan-matched customers.
 
 **Data Plan Mismatch:**
 
-| Segment | Churn Rate |
-|---------|------------|
-| Heavy data user + Unlimited Plan (matched) | ~29.9% |
-| Heavy data user + No Unlimited Plan (overage) | ~29.6% |
-| Light data user + Unlimited Plan (overpaying) | ~34.9% |
-| Light data user + No Plan (no overage) | ~13.0% |
+| Segment | Churn Rate | Customers | Churned |
+|---------|------------|-----------|---------|
+| Light data user + No Unlimited Plan (no overage) | 13.0% | 1,781 | 231 |
+| Light data user + Unlimited Plan (overpaying) | 34.9% | 1,980 | 692 |
+| Heavy data user + Unlimited Plan (matched) | 29.9% | 2,514 | 751 |
+| Heavy data user + No Unlimited Plan (overage) | 29.6% | 412 | 122 |
 
 **International Plan Mismatch:**
 
-| Segment | Churn Rate |
-|---------|------------|
-| Intl Active + Intl Plan (matched) | ~19.9% |
-| Intl Active + No Intl Plan (overage) | ~34.3% |
-| Not Intl Active + No Plan (no overage) | ~22.2% |
-| Not Intl Active + Intl Plan (overpaying) | ~27.1% |
+| Segment | Churn Rate | Customers | Churned |
+|---------|------------|-----------|---------|
+| Not Intl Active + No Intl Plan (no overage) | 22.2% | 4,116 | 914 |
+| Intl Active + No Intl Plan (overage) | 34.3% | 2,571 | 882 |
 
-**Key finding:** Customers paying overage charges without a matching plan churn at approximately **twice the rate** of plan-matched customers.
+*(Note: the "Intl Active + Intl Plan, matched" and "Not Intl Active + Intl
+Plan, overpaying" segments were not computed in this pass and should be
+added for a complete four-way comparison.)*
 
-**Retention actions directly identified:**
-1. Proactively upgrade heavy data users without an Unlimited Plan → reduces churn rate from ~30% to ~15%
-2. Proactively upgrade Intl Active customers without an Intl Plan → reduces churn rate from ~35% to ~17%
+**Key finding (revised):** Among heavy data users, churn rate is nearly
+identical whether or not they have an Unlimited Plan (29.9% matched vs.
+29.6% overage) — the earlier assumption that overage exposure roughly
+doubles churn risk for data usage is **not supported** by this data. The
+clearer signal is on the *light data user* side: customers overpaying for
+an Unlimited Plan they don't need churn at 34.9%, nearly 3x the rate of
+light users correctly on a limited plan (13.0%) — suggesting overpayment
+dissatisfaction, not data overage, is the stronger driver here.
 
-These are high-confidence, high-ROI interventions that do not require a predictive model — the mismatch can be identified deterministically from existing billing data.
+For international usage, the mismatch signal holds directionally: Intl
+Active customers without an Intl Plan churn at 34.3% vs. 22.2% for
+non-active customers with no plan — a meaningful gap, though the missing
+"matched" segment means this isn't yet a full four-way comparison.
+
+**Revenue at risk (from this analysis):**
+
+| Segment | Revenue at Risk | Customers |
+|---------|-----------------|-----------|
+| Data overage churners | $0.05M | 122 |
+| Intl overage churners | $0.39M | 882 |
+| Other churners | $0.35M | 792 |
+| **Total at risk** | **$0.79M / year** | |
+
+**Retention actions (revised):**
+1. Target light data users overpaying for Unlimited Plans they don't need —
+   this segment shows the largest, most reliable churn gap in the data plan
+   analysis (34.9% vs. 13.0%).
+2. Continue investigating Intl Active customers without an Intl Plan
+   (34.3% churn, 882 customers, $0.39M at risk) — the largest revenue
+   exposure segment in this analysis.
+3. Compute the missing matched/overpaying Intl segments before finalizing
+   the international mismatch conclusion.
 
 ---
 
