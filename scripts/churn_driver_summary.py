@@ -1,6 +1,10 @@
 # ==============================================================================
 # CHURN DRIVER SUMMARY & BRIDGE TO MODELING
 # ==============================================================================
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 overall_churn_rate = (df['Churn Label'] == 'Yes').mean()
 print(f"Overall Churn Rate (baseline): {overall_churn_rate:.1%}\n")
