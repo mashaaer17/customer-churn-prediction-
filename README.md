@@ -503,7 +503,8 @@ openpyxl
 
 ```
 ├── data/
-│   └── Databel - Data.csv
+│   └── customer_churn_data.csv
+│   └── sample_customer_data.csv
 ├── notebooks/
 │   └── churn_analysis.ipynb
 ├── outputs/
@@ -532,8 +533,7 @@ openpyxl
 │   ├── overcharge_analysis.py
 │   ├── service_quality_analysis.py
 │   ├── tenure_lifecycle_analysis.py
-│   ├── financial_impact_analysis.py
-│   └── churn_driver_summary.py
+│   └── financial_impact_analysis.py
 ├── app.py
 ├── xgboost_churn_model.pkl
 ├── requirements.txt
