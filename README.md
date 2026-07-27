@@ -572,10 +572,6 @@ pip install pandas numpy matplotlib scipy scikit-learn xgboost shap streamlit pl
 
 Feel free to reach out with questions, feedback, or collaboration opportunities.
 
-
-
-```
-
 ---
 
 *Analysis conducted on the Databel Telecom dataset as part of a DataCamp case study. All business figures and retention ROI estimates are based on dataset averages and illustrative cost assumptions.*
