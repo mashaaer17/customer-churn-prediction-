@@ -544,14 +544,21 @@ openpyxl
 ---
 
 ## ⚙️ Requirements
-
-```
+```bash
 pandas
 numpy
 matplotlib
 scipy
 scikit-learn
+xgboost
+shap
+streamlit
+plotly
+joblib
+openpyxl
 
+Install with:
+```bash
 pip install pandas numpy matplotlib scipy scikit-learn xgboost shap streamlit plotly joblib openpyxl
 
 ## 👥 Collaborators
