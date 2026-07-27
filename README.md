@@ -476,8 +476,8 @@ scikit-learn
 openpyxl
 ```
 
-- **Live App:** `https://customer-churn-prediction-2027.streamlit.app/`
-- **Repository:** `https://github.com/mashaaer17/customer-churn-prediction-`
+- **Live App:** [https://customer-churn-prediction-2027.streamlit.app/](https://customer-churn-prediction-2027.streamlit.app/)
+- **Repository:** [https://github.com/mashaaer17/customer-churn-prediction-](https://github.com/mashaaer17/customer-churn-prediction-)`
   
 
 ### App Screenshots
