@@ -552,11 +552,8 @@ matplotlib
 scipy
 scikit-learn
 
-Install with:
-```bash
-pip install pandas numpy matplotlib scipy scikit-learn
+pip install pandas numpy matplotlib scipy scikit-learn xgboost shap streamlit plotly joblib openpyxl
 
-```
 ## 👥 Collaborators
 
 | Name | Email | LinkedIn |
