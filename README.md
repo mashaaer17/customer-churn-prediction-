@@ -557,7 +557,7 @@ scikit-learn
 
 | Name | Email | LinkedIn |
 |------|-------|----------|
-| [Mashaer Naseldeen] | [mohamed@gmail.com](mailto:mohamed@gmail.com) | [https://www.linkedin.com/in/mashaaer-nasreldeen](https://linkedin.com/in/mashaaer-nasreldeen) |
+| [Mashaer Naseldeen] | [mashaaer.mohamed@gmail.com](mailto:mashaaer.mohamed@gmail.com) | [https://www.linkedin.com/in/mashaaer-nasreldeen](https://linkedin.com/in/mashaaer-nasreldeen) |
 | [Moaaz Osman] | [moaazos9137@yahoo.com](mailto:moaazos9137@yahoo.com) | [https://www.linkedin.com/in/moaazos](https://linkedin.com/in/moaazos) |
 
 Feel free to reach out with questions, feedback, or collaboration opportunities.
