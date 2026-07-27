@@ -247,15 +247,21 @@ if uploaded_file:
             high_risk = len(filtered_df[filtered_df['Risk Level'] == '🟠 High Risk'])
             churned_count = len(filtered_df[filtered_df['Status'] == 'Churn'])
 
+            # Annualized revenue exposure for customers flagged as Churn under the
+            # sidebar's CHURN_THRESHOLD (same population as "Flagged as Churn" above),
+            # not the separate static Risk Level tiers. Monthly Charge is billed
+            # monthly, so we annualize (x12) to be comparable to annual reporting
+        
             rev_at_risk = 0
             if 'Monthly Charge' in filtered_df.columns:
-                rev_at_risk = filtered_df[filtered_df['Risk Level'].isin(['🔴 Critical Risk', '🟠 High Risk'])]['Monthly Charge'].sum()
+                rev_at_risk = filtered_df[filtered_df['Churn_Prediction'] == 1]['Monthly Charge'].sum() * 12
 
             c1, c2, c3, c4 = st.columns(4)
             c1.metric("👥 Total Analyzed", f"{total_customers:,}")
             c2.metric("🚩 Flagged as Churn", f"{churned_count:,}")
             c3.metric("📉 Avg Risk Score", f"{filtered_df['Churn_Probability'].mean():.1%}")
-            c4.metric("💰 Est. Revenue at Risk", f"${rev_at_risk:,.2f}" if rev_at_risk else "N/A")
+            c4.metric("💰 Est. Revenue at Risk (Annual)", f"${rev_at_risk:,.2f}" if rev_at_risk else "N/A")
+            st.caption("Annualized (Monthly Charge × 12) for customers flagged as Churn at the current threshold.")
 
             st.markdown("---")
             col_chart1, col_chart2 = st.columns(2)
