@@ -183,19 +183,17 @@ CHURN_THRESHOLD = st.sidebar.slider(
 )
 
 # Reference tradeoff figures (retrained model, no StandardScaler — 2026-07 update).
-# 0.50 comes from the notebook's held-out test-set classification report.
-# 0.40 comes from a live full-dataset evaluation (test-set figure for this specific
-# threshold hasn't been re-run yet); update it once the notebook's threshold-sensitivity
-# check is re-run on the new model for an apples-to-apples comparison with the 0.50 row.
+# Both rows now come from the same source: the notebook's held-out test-set
+# classification report (20% stratified split), so 0.40 and 0.50 are directly comparable.
 threshold_reference = {
-    0.40: {"precision": 0.69, "recall": 0.87},
+    0.40: {"precision": 0.68, "recall": 0.91},
     0.50: {"precision": 0.75, "recall": 0.88},
 }
 closest_ref = min(threshold_reference.keys(), key=lambda t: abs(t - CHURN_THRESHOLD))
 ref_vals = threshold_reference[closest_ref]
 st.sidebar.caption(
     f"Reference @ {closest_ref:.2f}: Precision ≈ {ref_vals['precision']:.2f}, Recall ≈ {ref_vals['recall']:.2f}\n\n"
-    f"(At 0.40: Recall 87% / Precision 69% | At 0.50: Recall 88% / Precision 75%)"
+    f"(At 0.40: Recall 91% / Precision 68% | At 0.50: Recall 88% / Precision 75%)"
 )
 
 st.title("Customer Churn Prediction")
