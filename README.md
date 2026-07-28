@@ -370,7 +370,6 @@ StandardScaler fit on X_train only → transform X_train & X_test
 | 8 | Contract type + CS calls + plan mismatch = top 3 model features | Feature engineering plan defined |
 
 ---
-
 ## 🤖 Model Building & Benchmarking
 
 Building on the driver framework from Step 8, multiple algorithms were evaluated using consistent 5-fold Stratified Cross-Validation and explicit class-imbalance handling (`class_weight` / `scale_pos_weight`) across all models, to find the optimal balance between predictive power, recall, and inference speed.
@@ -379,35 +378,47 @@ A Dummy Classifier (majority-class strategy) was used as a sanity floor: Mean CV
 
 | Stage | Model Name | CV-AUC | Test-AUC | Test Recall | Key Parameters / Architecture | Status |
 | :--- | :--- | :---: | :---: | :---: | :--- | :--- |
-| 1. Baseline | Logistic Regression | 0.9386 | 0.9447 | 0.88 | `class_weight="balanced"` | Evaluated |
-| 2. Challenger | Random Forest | 0.9377 | 0.9443 | 0.7354 | `class_weight="balanced"` | Evaluated |
-| 3. Challenger | XGBoost (Default) | 0.9429 | 0.9455 | 0.8162 | `scale_pos_weight=2.7223` | Evaluated |
-| 4. Champion | XGBoost (Tuned) | **0.9496** | **0.9543** | **0.88** | `max_depth=3, learning_rate=0.05, n_estimators=300, min_child_weight=3, subsample=0.8, colsample_bytree=0.8` | **Selected & Deployed** |
+| 1. Baseline | Logistic Regression | 0.9336 | 0.9338 | 0.87 | `class_weight="balanced"` | Evaluated |
+| 2. Challenger | Random Forest | 0.9419 | 0.9448 | 0.77 | `class_weight="balanced"` | Evaluated |
+| 3. Challenger | XGBoost (Default) | 0.9412 | 0.9428 | 0.82 | `scale_pos_weight=2.7223` | Evaluated |
+| 4. Champion | XGBoost (Tuned) | **0.9501** | **0.9547** | **0.88** | `max_depth=3, learning_rate=0.05, n_estimators=300, min_child_weight=3, subsample=0.8, colsample_bytree=0.8` | **Selected & Deployed** |
 
 XGBoost was selected as the final model due to its superior capability in handling non-linear relationships, its native support for `TreeExplainer` (SHAP) explainability, and because hyperparameter tuning specifically improved recall (0.82 → 0.88) — the more business-relevant metric given that missing a churner typically costs more than a false alarm.
 
-CV-AUC vs Test-AUC gap: 0.0047 (no significant overfitting detected).
+CV-AUC vs Test-AUC gap: 0.0046 (no significant overfitting detected).
 
 ### ROC Curve Comparison
 
+
+
 ![ROC Curve Analysis](outputs/roc_curve_analysis.png)
+
+
 
 All four models are compared on the same test set. The Champion (tuned XGBoost) curve sits marginally above the others, consistent with its highest AUC.
 
 ### Confusion Matrix (Champion Model, Test Set — Threshold 0.5)
 
+
+
 ![Confusion Matrix](outputs/confusion_matrix.png)
+
+
 
 |  | Predicted Retained | Predicted Churned |
 |---|---:|---:|
 | **Actual Retained** | 873 | 106 |
-| **Actual Churned** | 43 | 316 |
+| **Actual Churned** | 42 | 317 |
 
-Only 43 of 359 actual churners were missed (recall = 88%); 106 retained customers were flagged as false alarms.
+Only 42 of 359 actual churners were missed (recall = 88%); 106 retained customers were flagged as false alarms.
 
 ### Feature Importance
 
+
+
 ![Feature Importance](outputs/feature_importance.png)
+
+
 
 - **Dominant Driver:** Customer Service Calls is the strongest predictor of churn (confirmed by both SHAP and gain-based importance, via its binned equivalent `Call Bin_4+ Calls`) — directly consistent with Step 5's finding that 5+ calls correlates with a 3× churn rate.
 - **Contractual Stability:** Contract Type is a key secondary factor — Two-Year and One-Year contracts both rank among the top drivers, mirroring the 10–14× churn gap identified in Step 3.
@@ -415,13 +426,17 @@ Only 43 of 359 actual churners were missed (recall = 88%); 106 retained customer
 
 ### SHAP Summary Plot
 
+
+
 ![SHAP Summary Plot](outputs/shap_summary_plot.png)
+
+
 
 Gain-based importance and SHAP disagreed on the #1 ranked feature due to redundancy between `Customer Service Calls` (raw count) and its binned derivative `Call Bin_4+ Calls`. SHAP's more robust, per-prediction attribution confirms the raw call count is the true dominant signal, and its direction/magnitude view aligns with the business rules already identified in Steps 3–5 (long contracts lower risk, high service calls and international overage raise it).
 
 ### Threshold Sensitivity Analysis
 
-The model's 43 false negatives clustered tightly between predicted probabilities of 0.41–0.50 — near-misses rather than confidently wrong predictions. This motivated testing a lowered decision threshold.
+The model's 42 false negatives at the default threshold had a median predicted probability of 0.30, but roughly a quarter fell between 0.41–0.49 — close enough to the 0.50 cutoff that a modest threshold reduction could plausibly recover them. This motivated testing a lowered decision threshold.
 
 | Threshold | Precision | Recall | F1-Score |
 |-----------|-----------|--------|----------|
@@ -445,9 +460,10 @@ The Champion model is deployed as an interactive Streamlit dashboard (`app.py`),
 - Filterable, exportable CRM roster (CSV download) with tailored retention recommendations per customer
 
 **Model Serving Notes:**
-- The model is saved and loaded using `joblib` (`xgboost_churn_model.pkl`) via `joblib.dump()` / `joblib.load()`.
+- The model is saved with `pickle.dump()` and loaded in the app with `joblib.load()`; `joblib.load()` is generally compatible with plain pickle files, so this works, but for consistency the training notebook could be updated to use `joblib.dump()` to match.
 - Note: this approach requires the XGBoost version installed in the deployment environment to match the version used during training — a mismatch can cause errors such as `'XGBClassifier' object has no attribute 'use_label_encoder'` when unpickling. The exact XGBoost version is pinned in `requirements.txt` to prevent this.
 - Feature engineering in the app is applied dynamically to uploaded data and aligned to the model's expected input columns via `reindex()`, with missing columns filled as 0.
+
 
 **Local Installation:**
 ```bash
