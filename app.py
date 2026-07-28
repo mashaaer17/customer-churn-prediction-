@@ -108,18 +108,25 @@ def process_data(df: pd.DataFrame) -> Optional[pd.DataFrame]:
         'monthly charge': 'Monthly Charge',
         'account length (in months)': 'Account Length (in months)',
         'avg monthly gb download': 'Avg Monthly GB Download',
-        'group': 'Group',
         'extra international charges': 'Extra International Charges',
         'intl calls': 'Intl Calls'
     }
+    # 'Group' is a Yes/No flag in the raw data (auto-detected and mapped to 1/0
+    # during training via the binary-column encoder), NOT a numeric quantity.
+    # Coercing it with pd.to_numeric would turn every row to NaN -> 0, silently
+    # zeroing out this feature for all customers. Map it the same way training did.
+    target_binary = {
+        'group': 'Group'
+    }
 
     # Dynamic Renaming
-    rename_map = {raw_columns_lower[k]: v for k, v in {**target_categorical, **target_numerical}.items() if k in raw_columns_lower}
+    rename_map = {raw_columns_lower[k]: v for k, v in {**target_categorical, **target_numerical, **target_binary}.items() if k in raw_columns_lower}
     df = df.rename(columns=rename_map)
 
     base_categorical = [name for name in target_categorical.values() if name in df.columns]
     base_numerical = [name for name in target_numerical.values() if name in df.columns]
-    available_features = base_numerical + base_categorical
+    base_binary = [name for name in target_binary.values() if name in df.columns]
+    available_features = base_numerical + base_binary + base_categorical
 
     if not available_features:
         st.error("⚠️ Validation Failed: No recognized features found in the dataset.")
@@ -128,6 +135,10 @@ def process_data(df: pd.DataFrame) -> Optional[pd.DataFrame]:
     # Enforce safe data types & impute NaNs
     for col in base_numerical:
         df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+    for col in base_binary:
+        # Same Yes/No -> 1/0 mapping used by the training pipeline's automatic
+        # binary-column detector. Anything unrecognized defaults to 0 (No).
+        df[col] = df[col].astype(str).str.strip().str.capitalize().map({'Yes': 1, 'No': 0}).fillna(0).astype(int)
     for col in base_categorical:
         df[col] = df[col].fillna('Unknown')
 
@@ -251,7 +262,7 @@ if uploaded_file:
             # sidebar's CHURN_THRESHOLD (same population as "Flagged as Churn" above),
             # not the separate static Risk Level tiers. Monthly Charge is billed
             # monthly, so we annualize (x12) to be comparable to annual reporting
-        
+            # (e.g. the EDA notebook's revenue-at-risk figures).
             rev_at_risk = 0
             if 'Monthly Charge' in filtered_df.columns:
                 rev_at_risk = filtered_df[filtered_df['Churn_Prediction'] == 1]['Monthly Charge'].sum() * 12
